@@ -1,6 +1,10 @@
 .idea
 .vscode
 .DS_Store
+.terraform
+*.tfstate
+*.backup
+*.tfvars
 *.log
 *~
 
