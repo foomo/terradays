@@ -1,0 +1,9 @@
+version: "1"
+actions:
+  - type: module
+    name: write
+  - type: script
+    path: ./modules/read/scripts/data.sh
+    stdin: '{"filename":"./data.json"}'
+  - type: module
+    name: read
