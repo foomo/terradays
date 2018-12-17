@@ -1,21 +1,23 @@
 # This is an example goreleaser.yaml file with some sane defaults.
 # Make sure to check the documentation at http://goreleaser.com
 builds:
-- binary: bin/terradays
-  main: ./main.go
-  env:
-    - CGO_ENABLED=0
-  goos:
-    - windows
-    - darwin
-    - linux
-  goarch:
-    - amd64
+  - binary: bin/terradays
+    main: ./main.go
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - windows
+      - darwin
+      - linux
+    goarch:
+      - amd64
+
 archive:
   format: tar.gz
   format_overrides:
   - goos: windows
     format: zip
+
 changelog:
   sort: asc
   filters:
@@ -24,3 +26,10 @@ changelog:
     - '^test:'
     - '^chore:'
     - '^refactor:'
+
+brew:
+  github:
+    owner: foomo
+    name: homebrew-terradays
+  homepage: "https://github.com/foomo/terradays"
+  description: "Terraform utility, cause even the good ones need a couple of days to create a planet"
