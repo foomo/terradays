@@ -1,10 +1,10 @@
 # Terradays
 
-> Cause even the good ones need at least 7 days to create a planet.
-
 Terradays is a small utility around terraform that tries to help to workaround some issues that are currently not yet fixed. For now, it will read in a `terradays.yaml` file containing a list of actions that it will then apply in sequence.
 
 ## Installation
+
+Download and install precombiled [releases](https://github.com/foomo/terradays/releases).
 
 On Mac OS X you can also install the latest release via Homebrew:
 
