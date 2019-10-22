@@ -10,7 +10,10 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var applyArgs string
+var (
+	flagApplyArgs string
+	flagTerraform string
+)
 
 // applyCmd represents the apply command
 var applyCmd = &cobra.Command{
@@ -18,6 +21,8 @@ var applyCmd = &cobra.Command{
 	Short: "builds or changes infrastructure",
 	Long:  `Builds or changes infrastructure in sequence according to the Terradays configuration file in DIR.`,
 	RunE: func(cmd *cobra.Command, args []string) error {
+		terradays.Terraform = flagTerraform
+
 		dirname, err := os.Getwd()
 		if err != nil {
 			return err
@@ -32,7 +37,7 @@ var applyCmd = &cobra.Command{
 			return err
 		}
 
-		if err := plan.Apply(dirname, applyArgs); err != nil {
+		if err := plan.Apply(dirname, flagApplyArgs); err != nil {
 			logrus.WithError(err).Fatal("Could not execute plan")
 		}
 
@@ -42,5 +47,6 @@ var applyCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(applyCmd)
-	applyCmd.Flags().StringVar(&applyArgs, "tfargs", "", "Arguements to pass on to Terraform")
+	applyCmd.Flags().StringVar(&flagApplyArgs, "tfargs", "", "Arguements to pass on to Terraform")
+	applyCmd.Flags().StringVar(&flagTerraform, "terraform", "terraform", "Path to terraform executable")
 }
